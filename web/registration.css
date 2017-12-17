@@ -1,0 +1,104 @@
+.parent {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    overflow: auto;
+    font-family: Cantarell;
+    font-size: 14pt;
+}
+
+.button {
+    border: none;
+    font-weight: 700;
+    outline: none;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    background: #a8a8a8;
+    box-shadow: 0 -3px #7a7a7a inset;
+    transition: 0.2s;
+    font-size: 20pt;
+    width: 65%;
+    height: 43px;
+    margin-top: 47px;
+    margin-left: 17.5%;
+}
+.button:hover { background: #fc5a5a; }
+.button:active {
+    background: #ca5757;
+    box-shadow: 0 4px #bd3334 inset;
+}
+
+.inputUsername {
+    border-radius:8px;
+    border:rgba(0,0,0,.3) 2px solid;
+    box-sizing:border-box;
+    font-family: 'Open Sans', sans-serif;
+    font-size:16px;
+
+    height:43px;
+    width: 80%;
+    margin-left: 7.5%;
+    margin-top: 5px;
+}
+
+.required {
+    color: #9a0002;
+    font-size: 18pt;
+}
+
+.container {
+    width: 80%;
+}
+
+.container form {
+    padding-top: 20px;
+}
+
+.tip {
+    position: relative;
+    width: 100%;
+    height: 20px;
+}
+
+.aboutRequired {
+    position: absolute;
+    width: 20%;
+    margin-top: 0;
+    padding-bottom: 30px;
+    padding-left: 77%;
+}
+
+.email {
+    padding-top: 30px;
+    width: 50%;
+}
+
+.username {
+    padding-top: 30px;
+    width: 50%;
+}
+
+.password {
+    padding-top: 30px;
+    width: 100%;
+    display: inline;
+}
+
+.passwordFirst {
+    width: 50%;
+    float: left;
+    padding-top: 30px;
+}
+
+.passwordSecond {
+    padding-top: 30px;
+    width: 50%;
+    float: right;
+}

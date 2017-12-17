@@ -18,14 +18,14 @@
         <img onclick="location.href = '/'" src="images/cutResizeHydra.png">
     </div>
     <div class="inHead">
-        <a class="link" onclick="itemOfDay()">
+        <a class="link">
             <div class="options">
                 <div class="inOptions">
 
                 </div>
             </div>
         </a>
-        <a class="link" onclick="seeAll()">
+        <a class="link">
             <div class="options">
                 <div class="inOptions">
 
@@ -87,7 +87,7 @@
                         <p>- A single account that allows for various interaction with LG</p>
                     </li>
                 </ul>
-                <a href="/reg">Регистрация</a>
+                <a href="/registration.jsp">Регистрация</a>
             </div>
         </div>
     </div>

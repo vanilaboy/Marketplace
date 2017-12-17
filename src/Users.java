@@ -26,7 +26,8 @@ public class Users extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("market.jsp").forward(request, response);
+        request.getSession().invalidate();
+        request.getRequestDispatcher("/market").forward(request, response);
     }
 
     @Override
@@ -42,7 +43,7 @@ public class Users extends HttpServlet {
                     thread.start();
                     HttpSession session = request.getSession();
                     session.setAttribute("username", newUsername);
-                    request.getRequestDispatcher("market.jsp").forward(request, response);
+                    request.getRequestDispatcher("/market").forward(request, response);
                 } else {
                     request.setAttribute("whatDo", "Username or Password already use!");
                     request.getRequestDispatcher("somethingWrong.jsp").forward(request, response);
@@ -58,7 +59,7 @@ public class Users extends HttpServlet {
                 if (checkUser(username, password)) {
                     HttpSession session = request.getSession();
                     session.setAttribute("username", username);
-                    request.getRequestDispatcher("market.jsp").forward(request, response);
+                    request.getRequestDispatcher("/market").forward(request, response);
                 } else {
                     request.setAttribute("whatDo", "Invalid Username or Password!");
                     request.getRequestDispatcher("somethingWrong.jsp").forward(request, response);

@@ -45,13 +45,31 @@ html {
 }
 
 .welcome {
+    position: absolute;
+    right: 10px;
+    top: 10px;
     width: 250px;
     text-align: center;
     height: 64px;
 }
 
 .inOptionsWelcome {
-    font-size: 15pt;
+    font-size: 14pt;
+    font-family: Cantarell;
+    padding-top: 17px;
+    color: #cecece;
+}
+
+.inOptionsExit {
+    font-size: 10pt;
+    font-family: Cantarell;
+    padding-top: 3px;
+    color: #cecece;
+    transition: .3s ease-in;
+}
+
+.inOptionsExit:hover {
+    color: #fc5a5a;
 }
 
 .options:hover {

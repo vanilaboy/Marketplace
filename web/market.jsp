@@ -96,14 +96,6 @@
                     "                </div>\n" +
                     "            </div>\n" +
                     "        </a>");
-    } else  {
-            out.println("<a href=\"/reg\" class=\"link\">\n" +
-                    "            <div class=\"options\">\n" +
-                    "                <div class=\"inOptions\">\n" +
-                    "                    Выход\n" +
-                    "                </div>\n" +
-                    "            </div>\n" +
-                    "        </a>");
     }%>
 
         <a href="" class="link">
@@ -113,13 +105,18 @@
                 </div>
             </div>
         </a>
-        <a href="" class="link">
-            <div class="welcome">
-                <div class="inOptionsWelcome">
-                    Добрый день Dude!
-                </div>
-            </div>
-        </a>
+        <%if(request.getSession().getAttribute("username") != null) {
+            out.println("<a class=\"link\">\n" +
+                    "            <div class=\"welcome\">\n" +
+                    "                <div class=\"inOptionsWelcome\">\n" +
+                    "                    Добрый день " + request.getSession().getAttribute("username").toString());
+            out.println("</div>\n" +
+                    "                <a href=\"/reg\" class=\"inOptionsExit\">\n" +
+                    "                    Выход\n" +
+                    "                </a>\n" +
+                    "            </div>\n" +
+                    "        </a>");
+        }%>
     </div>
 </div>
 <div class="parent">
