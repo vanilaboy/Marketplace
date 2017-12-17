@@ -1,0 +1,95 @@
+html {
+    background-color: rgba(0, 0, 0, 0.09);
+}
+
+.frameItem {
+    box-shadow: 0 0 20px #8b8b8b;
+    width: 99%;
+}
+
+.parent {
+}
+
+
+.head {
+    display: flex;
+    margin-top: 0px;
+    left: 0;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    height: 85px;
+    z-index: 100;
+    background-color: rgb(49, 49, 49);
+}
+
+.hydra {
+    padding-top: 10px;
+    height: 75px;
+    width: 75px;
+    padding-left: 20%;
+
+}
+
+.inHead {
+    padding-left: 14%;
+    display: flex;
+}
+
+
+.options {
+    width: 180px;
+    text-align: center;
+    height: 64px;
+    transition: .3s ease-in;
+}
+
+.options:hover {
+    background-color: #cecece;
+}
+
+.inOptions {
+    padding-top: 21px;
+    font-size: 17pt;
+    color: #cecece;
+    transition: .3s ease-in;
+    font-family: Cantarell;
+}
+
+.link {
+    margin-top: 20px;
+    height: 64px;
+    text-decoration: none;
+    outline: none;
+}
+
+.options:hover .inOptions {
+    color: #5b5b5b;
+}
+
+.wrap {
+    -moz-column-count: 3;
+    -webkit-column-count: 3;
+    column-count: 3;
+    list-style: none;
+    padding-top: 100px;
+    padding-left: 22%;
+    padding-right: 22%;
+    display: inline-flex;
+}
+
+li {
+    list-style-type: none;
+}
+
+ul {
+    margin-top: 0;
+}
+
+.plusWidth {
+    height: 30px;
+}
+
+.plusWidthSale {
+    height: 30px;
+}
