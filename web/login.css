@@ -1,0 +1,112 @@
+html {
+    background-color: rgba(0, 0, 0, 0.09);
+}
+
+.parent {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    overflow: auto;
+}
+
+.button {
+    border: none;
+    font-weight: 700;
+    outline: none;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    background: #a8a8a8;
+    box-shadow: 0 -3px #7a7a7a inset;
+    transition: 0.2s;
+    font-size: 20pt;
+    width: 85%;
+    height: 43px;
+    margin-top: 27px;
+    margin-left: 7.5%;
+}
+.button:hover { background: #fc5a5a; }
+.button:active {
+    background: #ca5757;
+    box-shadow: 0 4px #bd3334 inset;
+}
+
+.whatIsThisUp {
+    margin-top: 13%;
+    margin-left: 7.5%;
+    font-size: 18pt;
+}
+
+.whatIsThisDown {
+    margin-top: 9%;
+    margin-left: 7.5%;
+    font-size: 18pt;
+}
+
+.inputUsername {
+    border-radius:8px;
+    border:rgba(0,0,0,.3) 2px solid;
+    box-sizing:border-box;
+    font-family: 'Open Sans', sans-serif;
+    font-size:16px;
+
+    height:43px;
+    width: 85%;
+    margin-left: 7.5%;
+    margin-top: 5px;
+}
+
+.inputPassword {
+    border-radius:8px;
+    border:rgba(0,0,0,.3) 2px solid;
+    box-sizing:border-box;
+    font-family: 'Open Sans', sans-serif;
+    font-size:16px;
+
+    height:43px;
+    width: 85%;
+    margin-left: 7.5%;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.signInArea {
+    position: relative;
+    height: 60%;
+    width: 60%;
+}
+
+.loginForm {
+    background-color: #cecece;
+    height: 100%;
+    width: 45%;
+    position: absolute;
+    left: 0;
+}
+
+.txtList {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+}
+
+.aboutSignIn {
+    padding-top: 10%;
+    font-size: 14pt;
+}
+
+.aboutSignIn strong {
+    font-size: 16pt;
+}
+
+.aboutSignIn a {
+    color: #fc5a5a;
+    float: right;
+}

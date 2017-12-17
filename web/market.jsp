@@ -60,7 +60,7 @@
 </script>
 <html>
 <head>
-    <title>Title</title>
+    <title>Marketplace</title>
 </head>
 <body>
 <div class="head">
@@ -88,18 +88,35 @@
                     Скидки
                 </div>
             </div>
-        </a>
-        <a href="" class="link">
-            <div class="options">
-                <div class="inOptions">
-                    Регистрация
-                </div>
-            </div>
-        </a>
+        </a><%if(request.getSession().getAttribute("username") == null) {
+            out.println("<a href=\"login.jsp\" class=\"link\">\n" +
+                    "            <div class=\"options\">\n" +
+                    "                <div class=\"inOptions\">\n" +
+                    "                    Вход\n" +
+                    "                </div>\n" +
+                    "            </div>\n" +
+                    "        </a>");
+    } else  {
+            out.println("<a href=\"/reg\" class=\"link\">\n" +
+                    "            <div class=\"options\">\n" +
+                    "                <div class=\"inOptions\">\n" +
+                    "                    Выход\n" +
+                    "                </div>\n" +
+                    "            </div>\n" +
+                    "        </a>");
+    }%>
+
         <a href="" class="link">
             <div class="options">
                 <div class="inOptions">
                     Корзина
+                </div>
+            </div>
+        </a>
+        <a href="" class="link">
+            <div class="welcome">
+                <div class="inOptionsWelcome">
+                    Добрый день Dude!
                 </div>
             </div>
         </a>

@@ -44,6 +44,16 @@ html {
     transition: .3s ease-in;
 }
 
+.welcome {
+    width: 250px;
+    text-align: center;
+    height: 64px;
+}
+
+.inOptionsWelcome {
+    font-size: 15pt;
+}
+
 .options:hover {
     background-color: #cecece;
 }
