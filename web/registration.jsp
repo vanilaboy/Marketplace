@@ -44,27 +44,27 @@
                     <div class="textEmail">
                         Ваш Email <span class="required">*</span>
                     </div>
-                    <span><input name="email" placeholder=" Email..." class="inputUsername" required></span>
+                    <span><input name="newEmail" placeholder=" Email..." class="inputUsername" required></span>
+                    <div class="aboutPassword">Ваш пароль для входа будет отправлен вам на email.<br> Проверьте почту и используйте его для входа</div>
                 </div>
                 <div class="username">
                     <div class="textUsername">
                         Имя пользователя <span class="required">*</span>
                     </div>
-                    <span><input name="email" placeholder=" Username..." class="inputUsername" required></span>
+                    <span><input name="newUsername" placeholder=" Username..." class="inputUsername" required></span>
                 </div>
                 <div class="password">
-
                     <div class="passwordFirst">
                         <div class="textPasswordFirst">
                             Имя <span class="required">*</span>
                         </div>
-                        <span><input name="email" placeholder=" Password..." class="inputUsername" required></span>
+                        <span><input name="newPassword" placeholder=" ..." class="inputUsername" required></span>
                     </div>
                     <div class="passwordSecond">
                         <div class="textPasswordSecond">
                             Отчество <span class="required">*</span>
                         </div>
-                        <span><input name="email" placeholder=" Password..." class="inputUsername" required></span>
+                        <span><input name="email" placeholder=" ..." class="inputUsername" required></span>
                     </div>
                 </div>
                 <button class="button">Регистрация</button>

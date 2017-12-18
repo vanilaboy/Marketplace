@@ -40,12 +40,11 @@ public class Users extends HttpServlet {
             if(!checkExistEmail(newEmail)) {
                 if (!checkExist(newUsername)) {
                     String passcode = new SendEmail().send(newEmail);
-
                     allUsers.put(newUsername, passcode);
                     Writer thread = new Writer(allUsers);
                     thread.start();
-                    HttpSession session = request.getSession();
-                    session.setAttribute("username", newUsername);
+        //            HttpSession session = request.getSession();
+        //            session.setAttribute("username", newUsername);
                     request.getRequestDispatcher("/market").forward(request, response);
                 } else {
                     request.setAttribute("whatDo", "Username or Password already use!");

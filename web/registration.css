@@ -80,6 +80,12 @@
     width: 50%;
 }
 
+.aboutPassword {
+    position: absolute;
+    right: 350px;
+    font-size: 15pt;
+}
+
 .username {
     padding-top: 30px;
     width: 50%;
