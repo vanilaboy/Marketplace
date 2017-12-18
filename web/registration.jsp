@@ -56,13 +56,13 @@
 
                     <div class="passwordFirst">
                         <div class="textPasswordFirst">
-                            Пароль <span class="required">*</span>
+                            Имя <span class="required">*</span>
                         </div>
                         <span><input name="email" placeholder=" Password..." class="inputUsername" required></span>
                     </div>
                     <div class="passwordSecond">
                         <div class="textPasswordSecond">
-                            Подтвердите пароль <span class="required">*</span>
+                            Отчество <span class="required">*</span>
                         </div>
                         <span><input name="email" placeholder=" Password..." class="inputUsername" required></span>
                     </div>

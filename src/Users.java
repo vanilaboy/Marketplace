@@ -1,4 +1,5 @@
 import io.Reader;
+import io.SendEmail;
 import io.Writer;
 
 import javax.servlet.ServletException;
@@ -38,7 +39,9 @@ public class Users extends HttpServlet {
         if(newPassword != null && newUsername != null && newEmail != null) {
             if(!checkExistEmail(newEmail)) {
                 if (!checkExist(newUsername)) {
-                    allUsers.put(newUsername, newPassword);
+                    String passcode = new SendEmail().send(newEmail);
+
+                    allUsers.put(newUsername, passcode);
                     Writer thread = new Writer(allUsers);
                     thread.start();
                     HttpSession session = request.getSession();
