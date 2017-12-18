@@ -11,11 +11,12 @@ import java.util.Map;
  * Created by root on 17.12.17 with love.
  */
 public class Writer extends Thread {
-    private String path = "/root/IdeaProjects/Marketplace/users.txt";
+    private String path;
     private HashMap<String, String> hashMap;
 
-    public Writer(HashMap<String, String> map) {
+    public Writer(HashMap<String, String> map, String path) {
         hashMap = map;
+        this.path = path;
     }
 
     @Override

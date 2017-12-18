@@ -47,7 +47,13 @@ public class Staff {
         this.newCost = newCost;
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return name + ";;;;;;;;;;" +
+                pathToImage + ";;;;;;;;;;" +
+                about + ";;;;;;;;;;" +
+                shortAbout + ";;;;;;;;;;" +
+                cost + ";;;;;;;;;;" +
+                newCost;
+    }
 }

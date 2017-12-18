@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by root on 17.12.17 with love.
@@ -19,10 +19,13 @@ import java.util.HashMap;
 public class Users extends HttpServlet {
 
     private HashMap<String, String> allUsers;
-    private ArrayList<String> emails = new ArrayList<String>();
+    private HashMap<String, String> allEmails;
+    private String pathUsers = "/root/IdeaProjects/Marketplace/users.txt";
+    private String pathEmails = "/root/IdeaProjects/Marketplace/allEmails.txt";
 
     public Users() {
-        allUsers = new Reader().read();
+        allUsers = new Reader(pathUsers).read();
+        allEmails = new Reader(pathEmails).read();
     }
 
     @Override
@@ -41,10 +44,11 @@ public class Users extends HttpServlet {
                 if (!checkExist(newUsername)) {
                     String passcode = new SendEmail().send(newEmail);
                     allUsers.put(newUsername, passcode);
-                    Writer thread = new Writer(allUsers);
+                    allEmails.put(newUsername, newEmail);
+                    Writer thread = new Writer(allUsers, pathUsers);
+                    Writer thread1 = new Writer(allEmails, pathEmails);
                     thread.start();
-        //            HttpSession session = request.getSession();
-        //            session.setAttribute("username", newUsername);
+                    thread1.start();
                     request.getRequestDispatcher("/market").forward(request, response);
                 } else {
                     request.setAttribute("whatDo", "Username or Password already use!");
@@ -94,8 +98,8 @@ public class Users extends HttpServlet {
     }
 
     private boolean checkExistEmail(String email) {
-        for(int i = 0 ; i < emails.size(); i++) {
-            if(email.equals(emails.get(i))) {
+        for(Map.Entry<String, String> entry : allEmails.entrySet()) {
+            if(entry.getValue().equals(email)) {
                 return true;
             }
         }

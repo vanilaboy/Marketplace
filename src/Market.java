@@ -29,7 +29,7 @@ public class Market extends HttpServlet {
             Staff currentStaff = staff.get(i);
             BufferedReader in = new BufferedReader(new FileReader(new File("/root/IdeaProjects/Marketplace/web/card.html")));
             StringBuilder cardString = new StringBuilder();
-            cardString.append("<li id=\"item" + i + "\">");
+            cardString.append("<div class=\"gridItem\">");
             boolean sale = false;
             String tmp = in.readLine();
             while(tmp != null) {
@@ -62,13 +62,14 @@ public class Market extends HttpServlet {
 
             }
             if(sale) {
-                cardString.append("</li><div class=\"plusWidthSale\"></div>");
+                cardString.append("</div>");
             } else {
-                cardString.append("</li><div class=\"plusWidth\"></div>");
+                cardString.append("</div>");
             }
             cards.add(cardString.toString());
         }
         session.setAttribute("cards", cards);
+        session.setAttribute("allStaff", staff);
         request.getRequestDispatcher("market.jsp").forward(request, response);
     }
 

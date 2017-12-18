@@ -24,13 +24,36 @@
                 </div>
             </div>
         </a>
-        <a href="login.jsp" class="link">
+        <%if(request.getSession().getAttribute("username") == null) {
+            out.println("<a href=\"login.jsp\" class=\"link\">\n" +
+                    "            <div class=\"options\">\n" +
+                    "                <div class=\"inOptions\">\n" +
+                    "                    Вход\n" +
+                    "                </div>\n" +
+                    "            </div>\n" +
+                    "        </a>");
+        }%>
+
+        <a href="/basket" class="link">
             <div class="options">
                 <div class="inOptions">
-                    Вход
+                    Корзина
                 </div>
             </div>
         </a>
+
+        <%if(request.getSession().getAttribute("username") != null) {
+            out.println("<a class=\"link\">\n" +
+                    "            <div class=\"welcome\">\n" +
+                    "                <div class=\"inOptionsWelcome\">\n" +
+                    "                    Добрый день " + request.getSession().getAttribute("username").toString());
+            out.println("</div>\n" +
+                    "                <a href=\"/reg\" class=\"inOptionsExit\">\n" +
+                    "                    Выход\n" +
+                    "                </a>\n" +
+                    "            </div>\n" +
+                    "        </a>");
+        }%>
     </div>
 </div>
 <div class="parent">

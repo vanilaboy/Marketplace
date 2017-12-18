@@ -96,22 +96,20 @@ html {
 }
 
 .wrap {
-    -moz-column-count: 3;
-    -webkit-column-count: 3;
-    column-count: 3;
     list-style: none;
     padding-top: 100px;
     padding-left: 22%;
     padding-right: 22%;
-    display: inline-flex;
+    text-align: center;
 }
 
-li {
-    list-style-type: none;
-}
-
-ul {
-    margin-top: 0;
+.gridItem {
+    margin: 20px;
+    width: 299px;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    line-height: normal;
 }
 
 .plusWidth {

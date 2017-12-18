@@ -8,10 +8,10 @@ import java.util.HashMap;
  */
 public class Reader {
 
-    private String path = "/root/IdeaProjects/Marketplace/users.txt";
+    private String path;
 
-    public Reader() {
-
+    public Reader(String path) {
+        this.path = path;
     }
 
     public HashMap<String, String> read() {

@@ -8,14 +8,24 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script>
     function sale() {
+        seeAll();
         var a = [];
         var b = [];
         a = document.getElementsByClassName('product-item');
-        b = document.getElementsByClassName('plusWidth');
         for(var i = 0; i < a.length; i++) {
-            a.item(i).style.display = 'none';
-            b.item(i).style.display = 'none';
+            a.item(i).parentNode.parentNode.style.display = 'none';
         }
+
+    }
+
+    function addInBasket(name) {
+        var req = new XMLHttpRequest();
+        req.open("GET", "/basket?staffNameForAdd=" + name.toString());
+        req.send();
+   /*     setTimeout(function () {
+            window.location.reload(true);
+        }, 100); */
+
     }
 
     function seeAll() {
@@ -25,15 +35,11 @@
         var salePlusWidth = [];
         notSaleItem = document.getElementsByClassName('product-item');
         saleItem = document.getElementsByClassName('product-item-sale');
-        notSalePlusWidth = document.getElementsByClassName('plusWidth');
-        salePlusWidth = document.getElementsByClassName('plusWidthSale');
         for(var i = 0; i < notSaleItem.length; i++) {
-            notSaleItem.item(i).style.display = 'block';
-            notSalePlusWidth.item(i).style.display = 'block';
+            notSaleItem.item(i).parentNode.parentNode.style.display = 'inline-block';
         }
         for(var i = 0; i < saleItem.length; i++) {
-            saleItem.item(i).style.display = 'block';
-            salePlusWidth.item(i).style.display = 'block';
+            saleItem.item(i).parentNode.parentNode.style.display = 'inline-block';
         }
     }
 
@@ -44,16 +50,12 @@
         var salePlusWidth = [];
         notSaleItem = document.getElementsByClassName('product-item');
         saleItem = document.getElementsByClassName('product-item-sale');
-        notSalePlusWidth = document.getElementsByClassName('plusWidth');
-        salePlusWidth = document.getElementsByClassName('plusWidthSale');
         for(var i = 0; i < notSaleItem.length; i++) {
-            notSaleItem.item(i).style.display = 'none';
-            notSalePlusWidth.item(i).style.display = 'none';
+            notSaleItem.item(i).parentNode.parentNode.style.display = 'none';
         }
         for(var i = 0; i < saleItem.length; i++) {
             if(i !== 1) {
-                saleItem.item(i).style.display = 'none';
-                salePlusWidth.item(i).style.display = 'none';
+                saleItem.item(i).parentNode.parentNode.style.display = 'none';
             }
         }
     }
@@ -98,13 +100,14 @@
                     "        </a>");
     }%>
 
-        <a href="" class="link">
+        <a href="/basket" class="link">
             <div class="options">
                 <div class="inOptions">
                     Корзина
                 </div>
             </div>
         </a>
+
         <%if(request.getSession().getAttribute("username") != null) {
             out.println("<a class=\"link\">\n" +
                     "            <div class=\"welcome\">\n" +
@@ -119,19 +122,26 @@
         }%>
     </div>
 </div>
-<div class="parent">
-    <div class="wrap">
-        <ul>
-            <% if(request.getSession().getAttribute("cards") != null) {
+<div class="wrap">
+        <% if(request.getSession().getAttribute("cards") != null) {
 
-                ArrayList<String> list = (ArrayList<String>) request.getSession().getAttribute("cards");
-                for(int i = 0; i < list.size(); i++) {
+            ArrayList<String> list = (ArrayList<String>) request.getSession().getAttribute("cards");
+            for(int i = 0; i < list.size(); i++) {
+                if(i == 0) {
+       //             out.println("<div class=\"gridRow\">");
+                }
+                if((i + 1) % 3 == 0) {
+                    out.println(list.get(i));
+      //              out.println("</div>");
+       //             out.println("<div class=\"gridRow\">");
+                } else {
                     out.println(list.get(i));
                 }
+
             }
-            %>
-        </ul>
-    </div>
+        }
+        %>
+
 </div>
 </body>
 <link rel="stylesheet" href="market.css" type="text/css">
