@@ -1,6 +1,7 @@
 package io;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -13,6 +14,8 @@ public class Reader {
     public Reader(String path) {
         this.path = path;
     }
+
+    public Reader() {};
 
     public HashMap<String, String> read() {
         try {
@@ -33,6 +36,23 @@ public class Reader {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public HashMap<String, ArrayList<String>> readBasket() throws IOException {
+        HashMap<String, ArrayList<String>> res = new HashMap<String, ArrayList<String>>();
+        String pathBasket = "/root/IdeaProjects/Marketplace/basket.txt";
+        BufferedReader in = new BufferedReader(new FileReader(new File(pathBasket)));
+        String tmp = in.readLine();
+        while(tmp != null) {
+            ArrayList<String> list = new ArrayList<String>();
+            String[] usernameAndItems = tmp.split(";;;;;;;;;;;;;;;;;;;;;");
+            for(int i = 1; i < usernameAndItems.length; i++) {
+                list.add(usernameAndItems[i]);
+            }
+            res.put(usernameAndItems[0], list);
+            tmp = in.readLine();
+        }
+        return res;
     }
 
 }

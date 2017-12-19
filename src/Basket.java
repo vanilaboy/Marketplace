@@ -1,3 +1,6 @@
+import io.Reader;
+import io.Writer;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -6,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by root on 18.12.17 with love.
@@ -13,10 +17,19 @@ import java.util.ArrayList;
 @WebServlet("/basket")
 public class Basket extends HttpServlet {
     private ArrayList<Staff> staff =  new ArrayList<Staff>();
+    private HashMap<String, String> allEmails;
+    private HashMap<String, ArrayList<String>> basket = new HashMap<String, ArrayList<String>>();
+    private String pathEmails = "/root/IdeaProjects/Marketplace/mails.txt";
+    private String pathBasket = "/root/IdeaProjects/Marketplace/basket.txt";
 
 
-    public Basket() {
-
+    public Basket(){
+        allEmails = new Reader(pathEmails).read();
+        try {
+            basket = new Reader(pathBasket).readBasket();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -47,6 +60,9 @@ public class Basket extends HttpServlet {
                 String forAdd = request.getParameter("staffNameForAdd");
                 if(tmp.equals(forAdd)) {
                     stf = staff.get(i);
+                    if(session.getAttribute("username") != null) {
+                        rememberBasketAfterAdd((String) session.getAttribute("username"), forAdd);
+                    }
                     break;
                 }
             }
@@ -60,6 +76,10 @@ public class Basket extends HttpServlet {
                     for(int i = 0; i < inBasket.size(); i++) {
                         if(inBasket.get(i).contains(request.getParameter("staffNameForRemove"))) {
                             inBasket.remove(i);
+                            if(session.getAttribute("username") != null) {
+                                rememberBasketAfterDelete((String) session.getAttribute("username"),
+                                        request.getParameter("staffNameForRemove"));
+                            }
                             break;
                         }
                     }
@@ -68,6 +88,40 @@ public class Basket extends HttpServlet {
             } else {
                 request.getRequestDispatcher("basket.jsp").forward(request, response);
             }
+        }
+    }
+
+    private void rememberBasketAfterAdd(String username, String itemName) {
+        if(basket.get(username) != null) {
+            ArrayList<String> list = basket.get(username);
+            list.add(itemName);
+            basket.remove(username);
+            basket.put(username, list);
+            Writer thread = new Writer(basket);
+            thread.start();
+        } else {
+            ArrayList<String> list = new ArrayList<String>();
+            list.add(itemName);
+            basket.remove(username);
+            basket.put(username, list);
+            Writer thread = new Writer(basket);
+            thread.start();
+        }
+    }
+
+    private void rememberBasketAfterDelete(String username, String itemName) {
+        if(basket.get(username) != null) {
+            ArrayList<String> list = basket.get(username);
+            for(int i = 0; i < list.size(); i++) {
+                if(list.get(i).equals(itemName)) {
+                    list.remove(i);
+                    break;
+                }
+            }
+            basket.remove(username);
+            basket.put(username, list);
+            Writer thread = new Writer(basket);
+            thread.start();
         }
     }
 }

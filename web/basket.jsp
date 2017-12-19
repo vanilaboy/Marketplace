@@ -110,6 +110,7 @@
                 out.println("<br><br><br><br>Тут пусто!<br><br><br><br>");
             }%>
     </div>
+
 </div>
 </body>
 <link rel="stylesheet" href="market.css" type="text/css">

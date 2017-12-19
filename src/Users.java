@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +22,7 @@ public class Users extends HttpServlet {
     private HashMap<String, String> allUsers;
     private HashMap<String, String> allEmails;
     private String pathUsers = "/root/IdeaProjects/Marketplace/users.txt";
-    private String pathEmails = "/root/IdeaProjects/Marketplace/allEmails.txt";
+    private String pathEmails = "/root/IdeaProjects/Marketplace/mails.txt";
 
     public Users() {
         allUsers = new Reader(pathUsers).read();
@@ -65,6 +66,11 @@ public class Users extends HttpServlet {
                 if (checkUser(username, password)) {
                     HttpSession session = request.getSession();
                     session.setAttribute("username", username);
+                    try {
+                        addInBasketInSession(session);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     request.getRequestDispatcher("/market").forward(request, response);
                 } else {
                     request.setAttribute("whatDo", "Invalid Username or Password!");
@@ -75,6 +81,31 @@ public class Users extends HttpServlet {
                 session.invalidate();
             }
         }
+    }
+
+    private void addInBasketInSession(HttpSession session) throws IOException {
+        ArrayList<Staff> staff = (ArrayList<Staff>) session.getAttribute("allStaff");
+        String pathBasket = "/root/IdeaProjects/Marketplace/basket.txt";
+        HashMap<String, ArrayList<String>> basket = new Reader(pathBasket).readBasket();
+        String username = (String) session.getAttribute("username");
+        ArrayList<String> inBasket = new ArrayList<String>();
+        if(basket.get(username) != null) {
+            ArrayList<String> inBasketOnlyName = basket.get(username);
+            for(int i = 0; i < inBasketOnlyName.size(); i++) {
+                Staff stf = new Staff("notFoundUser","notFoundUser","notFoundUser",0,0, "notFoundUser");
+                String forAdd = inBasketOnlyName.get(i);
+                for(int j = 0; j < staff.size(); j++) {
+                    Staff tmpS = staff.get(j);
+                    String tmp = tmpS.getName();
+                    if(tmp.equals(forAdd)) {
+                        stf = staff.get(j);
+                        break;
+                    }
+                }
+                inBasket.add(stf.toString());
+            }
+        }
+        session.setAttribute("inBasket", inBasket);
     }
 
     private boolean checkUser(String username, String password) {

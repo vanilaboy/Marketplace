@@ -1,4 +1,6 @@
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import io.SendEmail;
+import io.Reader;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by root on 16.12.17 with love.
@@ -19,6 +23,8 @@ public class Market extends HttpServlet {
 
     public Market() {
         collectStaff("/root/IdeaProjects/Marketplace/staff");
+        NoticeOfDiscount thread = new NoticeOfDiscount();
+        //thread.start();
     }
 
     @Override
@@ -128,6 +134,7 @@ public class Market extends HttpServlet {
                                         String strNewCost = str.replaceAll("#####%%%%%", "");
                                         newCost = Double.parseDouble(strNewCost);
                                         staff.add(new Staff(name, pathToImage, about, cost, newCost, shortAbout));
+                                        about = "";
                                     }
                                 }
                             }
@@ -140,4 +147,42 @@ public class Market extends HttpServlet {
             e.printStackTrace();
         }
     }
+
+    private class NoticeOfDiscount extends Thread {
+        @Override
+        public void run() {
+            noticeOfDiscount();
+        }
+
+        private void noticeOfDiscount() {
+            String pathEmails = "/root/IdeaProjects/Marketplace/mails.txt";
+            HashMap<String, String> allEmails;
+            try {
+                HashMap<String, ArrayList<String>> basket = new Reader().readBasket();
+                allEmails = new Reader(pathEmails).read();
+                for(Map.Entry<String, ArrayList<String>> entry : basket.entrySet()) {
+                    StringBuilder res = new StringBuilder();
+                    ArrayList<String> inBasket = entry.getValue();
+                    for(int i = 0; i < inBasket.size(); i++) {
+                        String nameItem = inBasket.get(i);
+                        for(int j = 0; j < staff.size(); j++) {
+                            if(staff.get(j).getName().equals(nameItem)) {
+                                if(staff.get(j).getNewCost() != 0) {
+                                    res.append(nameItem).append(" теперь стоит ").append(staff.get(j).getNewCost()).append("$ вместо ");
+                                    res.append(staff.get(j).getCost()).append("$").append("\n");
+                                }
+                            }
+                        }
+                    }
+                    if(res.toString().length() > 3) {
+                        new SendEmail().send(allEmails.get(entry.getKey()), res.toString());
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
 }
