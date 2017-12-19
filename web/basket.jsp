@@ -94,14 +94,14 @@
                             "            </div>\n" +
                             "            <div class=\"quantity\">" + 1);
                     out.println(" </div>\n" +
-                            "            <div class=\"price\">" + about[4]);
+                            "            <div class=\"price\">" + about[4] + "$");
                     resultCost += Double.parseDouble(about[4]);
                     out.println("</div>\n" +
                             "        </div>");
                 }
                 out.println("</div>\n" +
                         "    <div class=\"bottomCardBasket\">\n" +
-                        "        <div class=\"subtotalValue\">" + resultCost.toString());
+                        "        <div class=\"subtotalValue\">" + resultCost.toString() + "$");
                 out.println("</div>\n" +
                         "        <div class=\"subtotal\">\n" +
                         "            Итог:\n" +

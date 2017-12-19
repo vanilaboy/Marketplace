@@ -53,7 +53,21 @@ public class Basket extends HttpServlet {
             inBasket.add(stf.toString());
             session.setAttribute("inBasket", inBasket);
         } else {
-            request.getRequestDispatcher("basket.jsp").forward(request, response);
+            if(request.getParameter("staffNameForRemove") != null) {
+                ArrayList<String> inBasket;
+                if(session.getAttribute("inBasket") != null) {
+                    inBasket = (ArrayList<String>) session.getAttribute("inBasket");
+                    for(int i = 0; i < inBasket.size(); i++) {
+                        if(inBasket.get(i).contains(request.getParameter("staffNameForRemove"))) {
+                            inBasket.remove(i);
+                            break;
+                        }
+                    }
+                    session.setAttribute("inBasket", inBasket);
+                }
+            } else {
+                request.getRequestDispatcher("basket.jsp").forward(request, response);
+            }
         }
     }
 }

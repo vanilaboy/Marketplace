@@ -24,6 +24,10 @@ public class Market extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+        ArrayList<String> inBasket = new ArrayList<String>();
+        if(session.getAttribute("inBasket") != null) {
+            inBasket = (ArrayList<String>) session.getAttribute("inBasket");
+        }
         ArrayList<String> cards = new ArrayList<String>();
         for(int i = 0; i < staff.size(); i++) {
             Staff currentStaff = staff.get(i);
@@ -41,7 +45,7 @@ public class Market extends HttpServlet {
                     tmp = tmp.replace("imageimageimage", currentStaff.getPathToImage());
                 }
                 if(tmp.contains("headheadhead")) {
-                    tmp = tmp.replace("headheadhead", currentStaff.getName());
+                    tmp = tmp.replaceAll("headheadhead", currentStaff.getName());
                 }
                 if(tmp.contains("pricepriceprice")) {
                     if(currentStaff.getNewCost() != 0) {
@@ -55,6 +59,20 @@ public class Market extends HttpServlet {
                         tmp = tmp.replaceAll("lowlowlow", "");
                     } else {
                         tmp = tmp.replaceAll("lowlowlow", Double.toString(currentStaff.getNewCost()));
+                    }
+                }
+                if(tmp.contains("valuevaluevalue")) {
+                    boolean inBasketFlag = false;
+                    for(int j = 0; j < inBasket.size(); j++) {
+                        if(inBasket.get(j).contains(currentStaff.getName())) {
+                            inBasketFlag = true;
+                            break;
+                        }
+                    }
+                    if(inBasketFlag) {
+                        tmp = tmp.replace("valuevaluevalue", "Убрать из корзины");
+                    } else {
+                        tmp = tmp.replace("valuevaluevalue", "В корзину");
                     }
                 }
                 cardString.append(tmp);
@@ -96,7 +114,7 @@ public class Market extends HttpServlet {
                         pathToImage = str.replaceAll("#########%", "");
                     } else {
                         if(str.contains("########%%")) {
-                            about = str.replaceAll("########%%", "");
+                            about += str.replaceAll("########%%", "");
                         } else {
                             if(str.contains("#######%%%")) {
                                 shortAbout = str.replaceAll("#######%%%", "");

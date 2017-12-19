@@ -1,0 +1,56 @@
+.aboutWrap {
+    margin-top: 100px;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-family: Cantarell;
+    background-color: #cecece;
+    box-shadow:  1px 0px rgb(0, 0, 0),
+    1px 1px rgb(0, 1, 2),
+    2px 1px rgb(0, 0, 0),
+    2px 2px rgb(0, 0, 1),
+    3px 2px rgb(0, 0, 0),
+    3px 3px rgb(0, 0, 0),
+    4px 3px rgb(0, 0, 0),
+    4px 4px rgb(0, 0, 0);
+}
+
+.nameItem {
+    text-align: center;
+    font-size: 35pt;
+    color: #fc5a5a;
+    letter-spacing: .1em;
+    text-shadow: 4px 4px white, 6px 6px #D7CC88;
+}
+
+.firstImage {
+    text-align: center;
+}
+
+.firstImage img {
+    border-radius: 10%;
+}
+
+.shortAbout {
+    font-size: 23pt;
+    text-align: center;
+    color: white;
+    color: white;
+    text-shadow: -2px -2px 0 #4D4644, 2px -2px 0 #4D4644, -2px 2px 0 #4D4644, 2px 2px 0 #4D4644, 4px 4px 0 white, 5px 5px 0 white, 6px 6px 0 white;
+    letter-spacing: 0.1em;
+}
+
+.aboutItem {
+    padding-left: 10%;
+    padding-right: 10%;
+    font-size: 15pt;
+    text-align: justify;
+    padding-bottom: 1%;
+}
+
+.price {
+    text-align: center;
+    font-size: 28px;
+    color: #fc5a5a;
+    display: block;
+    margin-bottom: 12px;
+}

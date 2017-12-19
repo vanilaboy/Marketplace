@@ -18,10 +18,19 @@
 
     }
 
-    function addInBasket(name) {
-        var req = new XMLHttpRequest();
-        req.open("GET", "/basket?staffNameForAdd=" + name.toString());
-        req.send();
+    function addInBasket(name, input) {
+        if(input.value === "В корзину") {
+            input.value ="Убрать из корзины";
+            var req = new XMLHttpRequest();
+            req.open("GET", "/basket?staffNameForAdd=" + name.toString());
+            req.send();
+        } else {
+            input.value = "В корзину";
+            var req = new XMLHttpRequest();
+            req.open("GET", "/basket?staffNameForRemove=" + name.toString());
+            req.send();
+        }
+
    /*     setTimeout(function () {
             window.location.reload(true);
         }, 100); */

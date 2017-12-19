@@ -22,10 +22,9 @@
     </div>
 </div>
 </body>
-<link rel="stylesheet" type="text/css" href="default2.css">
 <style>
     .text {
-        color: #ffffff;
+        color: #7c7c7c;
         text-shadow: #757575;
         font-family: "URW Gothic L";
         font-size: 40pt;
