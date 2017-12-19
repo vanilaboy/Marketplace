@@ -55,4 +55,21 @@ public class Reader {
         return res;
     }
 
+    public HashMap<String, ArrayList<String>> readBasket(String path) throws IOException {
+        HashMap<String, ArrayList<String>> res = new HashMap<String, ArrayList<String>>();
+        String pathBasket = path;
+        BufferedReader in = new BufferedReader(new FileReader(new File(pathBasket)));
+        String tmp = in.readLine();
+        while(tmp != null) {
+            ArrayList<String> list = new ArrayList<String>();
+            String[] usernameAndItems = tmp.split(";;;;;;;;;;;;;;;;;;;;;");
+            for(int i = 1; i < usernameAndItems.length; i++) {
+                list.add(usernameAndItems[i]);
+            }
+            res.put(usernameAndItems[0], list);
+            tmp = in.readLine();
+        }
+        return res;
+    }
+
 }

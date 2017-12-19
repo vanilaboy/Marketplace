@@ -43,7 +43,7 @@ public class Staff {
         return newCost;
     }
 
-    public void doSale(float newCost) {
+    public void doSale(double newCost) {
         this.newCost = newCost;
     }
 
